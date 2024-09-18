@@ -1,0 +1,13 @@
+Source: var-mii
+Section: utils
+Priority: optional
+Maintainer: Nate Drude <nate.d@variscite.com>
+Build-Depends: debhelper-compat (= 13), gcc, make
+Standards-Version: 4.6.2
+Homepage: https://github.com/varigit/var-mii
+
+Package: var-mii
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Variscite MII Tool
+ A tool to read, write, and test MII interfaces on Variscite System on Modules (SOMs).
