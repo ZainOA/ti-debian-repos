@@ -4,14 +4,14 @@ srctree ?= .
 
 build-indep:
 build-arch:
-	$(MAKE) -j 16 KERNELRELEASE=6.1.46+ff7deb28804cb5feeef0e5e51fd8acae58f870f0    ARCH=arm64 	KBUILD_BUILD_VERSION=1 -f $(srctree)/Makefile am62x_var_defconfig
-	$(MAKE) -j 16 KERNELRELEASE=6.1.46+ff7deb28804cb5feeef0e5e51fd8acae58f870f0    ARCH=arm64 	KBUILD_BUILD_VERSION=1 -f $(srctree)/Makefile
+	$(MAKE) -j 16 KERNELRELEASE=6.1.46+940fab2b81d2867133444eed01ba1b20c294965d    ARCH=arm64 	KBUILD_BUILD_VERSION=1 -f $(srctree)/Makefile am62x_var_defconfig
+	$(MAKE) -j 16 KERNELRELEASE=6.1.46+940fab2b81d2867133444eed01ba1b20c294965d    ARCH=arm64 	KBUILD_BUILD_VERSION=1 -f $(srctree)/Makefile
 
 build: build-arch
 
 binary-indep:
 binary-arch: build-arch
-	$(MAKE) -j 16 KERNELRELEASE=6.1.46+ff7deb28804cb5feeef0e5e51fd8acae58f870f0    ARCH=arm64 	KBUILD_BUILD_VERSION=1 -f $(srctree)/Makefile intdeb-pkg
+	$(MAKE) -j 16 KERNELRELEASE=6.1.46+940fab2b81d2867133444eed01ba1b20c294965d    ARCH=arm64 	KBUILD_BUILD_VERSION=1 -f $(srctree)/Makefile intdeb-pkg
 
 clean:
 	rm -rf debian/files debian/linux-*

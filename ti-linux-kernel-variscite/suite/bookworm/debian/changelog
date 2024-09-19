@@ -1,3 +1,9 @@
+ti-linux-kernel (6.1.46+940fab2b81d2867133444eed01ba1b20c294965d-2) UNRELEASED; urgency=medium
+
+  * Build based on commit 940fab2b81d2867133444eed01ba1b20c294965d
+
+ -- Nate Drude <nate.d@variscite.com>  Thu, 19 Sep 2024 17:11:10 +0000
+
 ti-linux-kernel (6.1.46+ff7deb28804cb5feeef0e5e51fd8acae58f870f0-1) UNRELEASED; urgency=medium
 
   * Build based on commit ff7deb28804cb5feeef0e5e51fd8acae58f870f0
