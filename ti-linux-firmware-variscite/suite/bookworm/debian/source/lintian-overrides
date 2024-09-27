@@ -1,0 +1,8 @@
+# This is non-free firmware (--> restricted component)
+ti-linux-firmware-variscite source: source-is-missing *
+ti-linux-firmware-variscite source: source-contains-prebuilt-binary *
+ti-linux-firmware-variscite source: binary-with-bad-dynamic-table *
+# These are prebuilt firmwares for remote-procs
+firmware-ti-ipc-am62-var-som: binary-from-other-architecture [lib/firmware/*]
+firmware-ti-ipc-am62-var-som: statically-linked-binary [lib/firmware/*]
+firmware-ti-ipc-am62-var-som: unstripped-binary-or-object [lib/firmware/*]

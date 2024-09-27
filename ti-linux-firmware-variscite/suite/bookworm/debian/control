@@ -1,0 +1,21 @@
+Source: ti-linux-firmware-variscite
+Section: kernel
+Priority: optional
+Maintainer: Nate Drude <nate.d@variscite.com>
+Build-Depends:
+ debhelper-compat (= 12),
+ ca-certificates,
+Standards-Version: 4.5.0
+Rules-Requires-Root: no
+Vcs-Git: https://github.com/varigit/meta-variscite-bsp-ti.git
+Vcs-Browser: https://github.com/varigit/meta-variscite-bsp-ti/tree/kirkstone-var01/recipes-ti/ti-rtos-bin
+Homepage: https://github.com/varigit/meta-variscite-bsp-ti/tree/kirkstone-var01/recipes-ti/ti-rtos-bin
+
+Package: firmware-ti-ipc-am62-var-som
+Provides: firmware-ti-ipc
+Conflicts: firmware-ti-ipc
+Replaces: firmware-ti-ipc
+Depends: ${misc:Depends}
+Architecture: all
+Description: TI IPC firmware for AM62
+ This package provides TI IPC firmwares for remoteprocs on VAR-SOM-AM62
