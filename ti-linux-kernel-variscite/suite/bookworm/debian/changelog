@@ -1,3 +1,9 @@
+ti-linux-kernel (6.1.83-var2+ca705eb7c9d102423b529319e8192634cc7bfbbd-3) UNRELEASED; urgency=medium
+
+  * Remove LOCALVERSION and KERNELBUILD from rules file
+
+ -- Nate Drude <nate.d@variscite.com>  Wed, 09 Oct 2024 18:09:36 +0000
+
 ti-linux-kernel (6.1.83-var1+ca705eb7c9d102423b529319e8192634cc7bfbbd-2) UNRELEASED; urgency=medium
 
   * Add kernel commit id to LOCALVERSION visible with uname -a
