@@ -33,24 +33,30 @@ def main():
             sys.exit(1)
 
     # Parse the old version
-    version_regex = r'(?P<kernel_version>[^-]+)-var(?P<var_number>\d+)\+(?P<commit_id>[^-]+)-(?P<debian_revision>.+)'
+    version_regex = r'(?P<kernel_version>[^+]+)-var(?P<var_number>\d+)\+(?P<commit_id>[^-]+)-(?P<debian_revision>.+)'
     m = re.match(version_regex, old_version)
     if not m:
         print(f"Error: Could not parse old version '{old_version}'.")
         sys.exit(1)
 
-    old_kernel_version = m.group('kernel_version')
+    old_kernel_version = m.group('kernel_version').strip()
     old_var_number = int(m.group('var_number'))
-    old_debian_revision = m.group('debian_revision')
+    old_debian_revision = m.group('debian_revision').strip()
+
+    # Build new kernel_version string including -k3
+    if '-k3' not in kernel_version:
+        kernel_version_with_k3 = kernel_version + '-k3'
+    else:
+        kernel_version_with_k3 = kernel_version
 
     # Determine new var number
-    if old_kernel_version == kernel_version:
+    if old_kernel_version == kernel_version_with_k3:
         new_var_number = old_var_number + 1
     else:
         new_var_number = 1
 
     # Build new version
-    new_version = f"{kernel_version}-var{new_var_number}+{new_commit_id}-{old_debian_revision}"
+    new_version = f"{kernel_version_with_k3}-var{new_var_number}+{new_commit_id}-{old_debian_revision}"
 
     # Update rules and control files
     files_to_update = [rules_file, control_file]
@@ -62,28 +68,33 @@ def main():
 
         # Update version strings
         content_updated = content_updated.replace(old_version, new_version)
-        if old_kernel_version != kernel_version:
-            content_updated = content_updated.replace(old_kernel_version, kernel_version)
+        if old_kernel_version != kernel_version_with_k3:
+            # Replace old kernel version with new kernel version including -k3
+            content_updated = content_updated.replace(old_kernel_version, kernel_version_with_k3)
 
-        # if filename == rules_file:
-        #     # Update KERNELRELEASE
-        #     content_updated = re.sub(
-        #         r'(KERNELRELEASE=)[^\s]+',
-        #         rf'\g<1>{kernel_version}-k3-var',
-        #         content_updated
-        #     )
-        #     # Add LOCALVERSION with commit ID
-        #     content_updated = re.sub(
-        #         r'(KBUILD_BUILD_VERSION=\d+)',
-        #         rf'\g<1> LOCALVERSION=+{new_commit_id}',
-        #         content_updated
-        #     )
-
-        if filename == control_file:
+        if filename == rules_file:
+            # Update LOCALVERSION
+            content_updated = re.sub(
+                r'(LOCALVERSION=)[^\s]+',
+                rf'\g<1>-k3-var{new_var_number}+{new_commit_id}-{old_debian_revision}',
+                content_updated
+            )
+            # Reset KBUILD_BUILD_VERSION to 1 if kernel version changed
+            if old_kernel_version != kernel_version_with_k3:
+                content_updated = re.sub(
+                    r'(KBUILD_BUILD_VERSION=)\d+',
+                    rf'\g<1>1',
+                    content_updated
+                )
+        elif filename == control_file:
             # Replace the Maintainer line
             content_updated = re.sub(
                 r'^Maintainer:.*$', f'Maintainer: {author}', content_updated, flags=re.MULTILINE
             )
+            # Update package names and descriptions with the new version
+            content_updated = content_updated.replace(old_version, new_version)
+            if old_kernel_version != kernel_version_with_k3:
+                content_updated = content_updated.replace(old_kernel_version, kernel_version_with_k3)
 
         if content != content_updated:
             with open(filename, 'w') as f:
@@ -109,3 +120,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
