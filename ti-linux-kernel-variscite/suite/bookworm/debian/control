@@ -8,6 +8,7 @@ Homepage: https://www.kernel.org/
 
 Package: linux-image-6.1.83-k3-var1+ca705eb7c9d102423b529319e8192634cc7bfbbd-1
 Architecture: arm64
+Depends: linux-headers-6.1.83-k3-var1+ca705eb7c9d102423b529319e8192634cc7bfbbd-1
 Description: Linux kernel, version 6.1.83-k3-var1+ca705eb7c9d102423b529319e8192634cc7bfbbd-1
  This package contains the Linux kernel, modules, and corresponding other
  files, version: 6.1.83-k3-var1+ca705eb7c9d102423b529319e8192634cc7bfbbd-1.
