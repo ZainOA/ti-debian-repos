@@ -1,3 +1,15 @@
+ti-linux-kernel (6.1.83-k3-var2+62548c6d33d9a14a1960a856bab0ac58218c43a9-1) UNRELEASED; urgency=medium
+
+  * Build based on commit 62548c6d33d9a14a1960a856bab0ac58218c43a9
+  * Include the following commits:
+  * https://github.com/varigit/ti-linux-kernel/commit/62548c6d33d9 configs: am62x_var_defconfig: Make defconfig minimal
+  * https://github.com/varigit/ti-linux-kernel/commit/9df778291214 configs: am62x_var_defconfig: Enable DM_CRYPT
+  * https://github.com/varigit/ti-linux-kernel/commit/7f4c5284cac7 configs: am62x_var_defconfig: Enable SELINUX and APPARMOR support
+  * https://github.com/varigit/ti-linux-kernel/commit/a656f07ee11b configs: am62x_var_defconfig: Enable NETFILTER_XT_MATCH_BPF
+  * https://github.com/varigit/ti-linux-kernel/commit/4aa1622af050 defconfig: add EXT4 FS and remove older FS support
+
+ -- Nate Drude <nate.d@variscite.com>  Wed, 09 Oct 2024 21:04:28 +0000
+
 ti-linux-kernel (6.1.83-k3-var1+ca705eb7c9d102423b529319e8192634cc7bfbbd-1) unreleased; urgency=medium
 
   * Build based on commit ca705eb7c9d102423b529319e8192634cc7bfbbd
