@@ -58,9 +58,32 @@ def main():
         with open(filename, 'r') as f:
             content = f.read()
 
-        content_updated = content.replace(old_version, new_version)
+        content_updated = content
+
+        # Update version strings
+        content_updated = content_updated.replace(old_version, new_version)
         if old_kernel_version != kernel_version:
             content_updated = content_updated.replace(old_kernel_version, kernel_version)
+
+        if filename == rules_file:
+            # Update KERNELRELEASE
+            content_updated = re.sub(
+                r'(KERNELRELEASE=)[^\s]+',
+                rf'\g<1>{kernel_version}-k3-var',
+                content_updated
+            )
+            # Add LOCALVERSION with commit ID
+            content_updated = re.sub(
+                r'(KBUILD_BUILD_VERSION=\d+)',
+                rf'\g<1> LOCALVERSION=+{new_commit_id}',
+                content_updated
+            )
+            # Ensure CONFIG_LOCALVERSION_AUTO is enabled
+            content_updated = re.sub(
+                r'(am62x_var_defconfig.*)',
+                rf'\g<1> CONFIG_LOCALVERSION_AUTO=y',
+                content_updated
+            )
 
         if filename == control_file:
             # Replace the Maintainer line
