@@ -1,3 +1,9 @@
+ti-linux-kernel (6.1.83-rt28-k3-var2+e6c17545e268142583bccecd5973ff15ca70aff1-1) UNRELEASED; urgency=medium
+
+  * Build based on commit e6c17545e268142583bccecd5973ff15ca70aff1
+
+ -- Alishammat <zain.alabedin.alishammat@hhi.fraunhofer.de>  Thu, 24 Apr 2025 12:44:20 +0000
+
 ti-linux-kernel (6.1.83-rt28-k3-var1+0bd16bd47287e882613f5290e8db4a150d50b3ac-1) UNRELEASED; urgency=medium
 
   * Build based on commit 0bd16bd47287e882613f5290e8db4a150d50b3ac
